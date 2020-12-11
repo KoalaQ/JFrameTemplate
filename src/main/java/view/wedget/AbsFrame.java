@@ -15,7 +15,7 @@ public abstract class AbsFrame extends JFrame implements ActionListener {
     public AbsFrame(String title) throws HeadlessException {
         super(title);
     }
-    protected void showFrame(){
+    public void showFrame(){
         setLocationRelativeTo(null);
         setVisible(true);
     }

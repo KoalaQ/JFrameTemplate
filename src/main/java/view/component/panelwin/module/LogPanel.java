@@ -1,5 +1,6 @@
-package view.module;
+package view.component.panelwin.module;
 
+import view.component.panelwin.AbsBaseJPanel;
 import view.util.FontFactory;
 import view.util.OutputStreamAdaptor;
 import view.wedget.util.LimitativeDocument;
@@ -12,7 +13,7 @@ import java.awt.event.FocusListener;
 /**
  * 暂只支持一个
  */
-public class LogPanel extends JPanel {
+public class LogPanel extends AbsBaseJPanel {
 
 
     private static JTextArea logTextArea= new JTextArea() ;//日志框

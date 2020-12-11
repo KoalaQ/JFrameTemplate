@@ -3,9 +3,8 @@ package view.util;
 
 import org.apache.log4j.Layout;
 import org.apache.log4j.WriterAppender;
-import view.module.LogPanel;
+import view.component.panelwin.module.LogPanel;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;

@@ -71,4 +71,24 @@ public class FontFactory {
         Font font=new Font("Default", Font.PLAIN,15);
         return font;
     }
+    /**
+     * 展示数据的表头，上面home字体大小
+     * @return
+     */
+    public static Font getDataTabtitleName(){
+        Font font=new Font("Default",Font.BOLD, 15);
+        return font;
+    }
+    public static Font getEditComBoxFont(){
+        Font font=new Font("Default",Font.PLAIN, 15);
+        return font;
+    }
+    /**
+     * sql定义输入框字体
+     * @return
+     */
+    public static Font getBtnFont(){
+        Font font=new Font("Default",Font.PLAIN, 15);
+        return font;
+    }
 }

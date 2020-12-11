@@ -41,8 +41,8 @@ public abstract class CommonConfigDao {
     }
     public static void save(CommonConfig commonConfig) throws Exception {
 
-        String sql=" insert into  %1$s (urid,ctype,content) values('%2$s','%3$s','%4$s') ";
-        sql=String.format(sql,commonConfig.getTableName(),commonConfig.getUrid(),commonConfig.getCtype(),commonConfig.getContent());
+        String sql=" insert into  %1$s (urid,ctype,content,orderno) values('%2$s','%3$s','%4$s','%5$s') ";
+        sql=String.format(sql,commonConfig.getTableName(),commonConfig.getUrid(),commonConfig.getCtype(),commonConfig.getContent(),commonConfig.getOrderno());
        int ret=  SqliteHelper.executeSql(sql);
        if(ret!=1){
            throw new Exception("保存不成功，类型"+commonConfig.getCtype()+":"+commonConfig.getContent());

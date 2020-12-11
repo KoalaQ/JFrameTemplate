@@ -1,8 +1,6 @@
 import org.apache.log4j.Logger;
 import util.LogUtil;
-import view.listener.ViewActionListener;
-import view.listener.constant.ENWarningLevel;
-import view.module.LogPanel;
+import view.component.panelwin.module.LogPanel;
 import view.wedget.AbsFrame;
 import view.wedget.MsgDialog;
 import view.wedget.PosTray;

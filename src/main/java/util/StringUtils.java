@@ -6,7 +6,13 @@ public class StringUtils {
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.isEmpty();
     }
-
+    public static String valueOf(Object obj) {
+        if (obj == null) return "";
+       /* if (obj instanceof oracle.sql.CLOB) {
+            return clobToString((oracle.sql.CLOB) obj);
+        }*/
+        return obj.toString();
+    }
     public static boolean isBlank(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {

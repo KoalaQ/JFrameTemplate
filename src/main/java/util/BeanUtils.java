@@ -22,7 +22,19 @@ public class BeanUtils {
         return method.invoke(bean,new Object[]{});
 
     }
-
+    /**
+     * 已经类名和方法调用,创建新对象
+     * @param className
+     * @param methodName
+     * @param args 参数
+     */
+    public static void invoke(String className,String methodName,Object... args) throws Exception {
+        Method method=null;
+        Class cls=Class.forName(className);
+        Object obj=cls.newInstance();
+        method=obj.getClass().getMethod(methodName);
+        method.invoke(obj,args);
+    }
     public static void setProperty(Object bean,String fieldName,Object fieldValue) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method=null;
         try {
@@ -56,9 +68,13 @@ public class BeanUtils {
         for(Map.Entry<String,Object> entry : valueMap.entrySet()){
           Method method=methodMap.get(entry.getKey().toLowerCase());
             if(method != null){
-                Object value=entry.getValue();
-                //TODO 判断转型BigDecimal等。暂时未写
-                method.invoke(bean,value);
+                if(Integer.class.getName().equals(method.getParameterTypes()[0].getName())){
+                    Integer integer=Integer.parseInt(StringUtils.valueOf(entry.getValue()));
+                    method.invoke(bean,integer);
+                }else{
+                    Object value=entry.getValue();
+                    method.invoke(bean,value);
+                }
             }
         }
 

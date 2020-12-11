@@ -11,7 +11,7 @@ public class ConfigDaoTest {
     @Test
     public void getAllConfig() {
         try {
-            System.out.println( ConfigDao .getAllConfig());
+            System.out.println( ConfigDao.getAllConfig());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,7 +60,7 @@ public class ConfigDaoTest {
     @Test
     public void update() {
         CommonConfig commonConfig=new CommonConfig();
-        commonConfig.setUrid("96bcbf51c9a24610af1d40a1ad08262f");
+        commonConfig.setUrid("74eb496a18bd4c118532aa95f5e6a3dd");
         commonConfig.setCtype("2");
         commonConfig.setContent("33");
         try {
