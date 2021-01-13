@@ -13,9 +13,9 @@ public abstract class CommonConfigDao {
 
 
     protected static List<CommonConfig> getAllConfig() throws Exception {
-        return  getConfigList("");
+        return  getConfigListByType("");
     }
-    public static List<CommonConfig> getConfigList(String ctype) throws Exception {
+    public static List<CommonConfig> getConfigListByType(String ctype) throws Exception {
         List<CommonConfig> retList=new ArrayList<>();
         String sql=" select * from "+ CommonConfig.TABLE_NAME;
         if(!StringUtils.isNullOrEmpty(ctype)){
@@ -31,11 +31,21 @@ public abstract class CommonConfigDao {
         }
         return  retList;
     }
-    protected static CommonConfig getConfig(String ctype)throws Exception{
+    public static CommonConfig getConfigByType(String ctype)throws Exception{
         CommonConfig ret=null;
-        List<CommonConfig> retList=getConfigList(ctype);
+        List<CommonConfig> retList=getConfigListByType(ctype);
         if(retList.size()>0){
             ret=retList.get(0);
+        }
+        return  ret;
+    }
+    public static CommonConfig getConfig(String urid)throws Exception{
+        CommonConfig ret=null;
+        String sql=" select * from "+ CommonConfig.TABLE_NAME +" where urid = '"+urid+"'";
+        List<Map<String,Object>> configs=SqliteHelper.getList(sql);
+        if(configs!=null && configs.size()>0){
+            ret = new CommonConfig();
+            BeanUtils.covertMapToBean(ret,configs.get(0));
         }
         return  ret;
     }

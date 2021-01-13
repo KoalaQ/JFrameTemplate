@@ -20,7 +20,7 @@ public class ConfigDaoTest {
     @Test
     public void getConfigList() {
         try {
-            System.out.println( ConfigDao.getConfigList("2"));
+           // System.out.println( ConfigDao.getConfigList("2"));
         } catch (Exception e) {
             e.printStackTrace();
         }
