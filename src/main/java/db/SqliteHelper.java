@@ -71,6 +71,11 @@ public class SqliteHelper {
         Statement statement=conn.createStatement();
         return statement.executeUpdate(sql);
     }
+    public static int executeSql(String sql, Object... params) throws SQLException {
+        PreparedStatement statement=conn.prepareStatement(sql);
+        fillStatement(statement, params);
+        return statement.executeUpdate();
+    }
     public static List<Map<String,Object>> getList(String sql) throws SQLException {
         List<Map<String,Object>> retMapList=new ArrayList<Map<String,Object>>();
         PreparedStatement pstmt=conn.prepareStatement(sql);
@@ -99,7 +104,20 @@ public class SqliteHelper {
 
     }
 
+    private static void fillStatement(PreparedStatement pstmt, Object... params) throws SQLException {
+        if(params != null) {
+            int i = 0;
 
+            for(int n = params.length; i < n; ++i) {
+                if(params[i] != null) {
+                    pstmt.setObject(i + 1, params[i]);
+                } else {
+                    pstmt.setNull(i + 1, 12);
+                }
+            }
+
+        }
+    }
     /**
      * 初始化sqllite，如果没有表则创建表
      * @throws Exception

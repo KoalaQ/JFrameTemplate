@@ -41,9 +41,9 @@ public abstract class CommonConfigDao {
     }
     public static void save(CommonConfig commonConfig) throws Exception {
 
-        String sql=" insert into  %1$s (urid,ctype,content,orderno) values('%2$s','%3$s','%4$s','%5$s') ";
-        sql=String.format(sql,commonConfig.getTableName(),commonConfig.getUrid(),commonConfig.getCtype(),commonConfig.getContent(),commonConfig.getOrderno());
-       int ret=  SqliteHelper.executeSql(sql);
+        String sql=" insert into  %1$s (urid,ctype,content,orderno) values(?,?,?,?) ";
+        sql=String.format(sql,commonConfig.getTableName());
+       int ret=  SqliteHelper.executeSql(sql,commonConfig.getUrid(),commonConfig.getCtype(),commonConfig.getContent(),commonConfig.getOrderno());
        if(ret!=1){
            throw new Exception("保存不成功，类型"+commonConfig.getCtype()+":"+commonConfig.getContent());
        }
@@ -51,9 +51,9 @@ public abstract class CommonConfigDao {
     }
 
     public static void update(CommonConfig commonConfig)throws Exception{
-        String sql=" update  %1$s  set content='%2$s' where urid='%3$s' ";
-        sql= String.format(sql,commonConfig.getTableName(),commonConfig.getContent(),commonConfig.getUrid());
-        int ret=  SqliteHelper.executeSql(sql);
+        String sql=" update  %1$s  set content=? where urid=? ";
+        sql= String.format(sql,commonConfig.getTableName());
+        int ret=  SqliteHelper.executeSql(sql,commonConfig.getContent(),commonConfig.getUrid());
         if(ret!=1){
             throw new Exception("更新不成功,类型"+commonConfig.getCtype()+":"+commonConfig.getContent());
         }
@@ -62,7 +62,7 @@ public abstract class CommonConfigDao {
         String sql=" delete from  %1$s   where urid='%2$s' ";
         sql=String.format(sql,CommonConfig.TABLE_NAME,urid);
         int ret=  SqliteHelper.executeSql(sql);
-        if(ret!=1){
+        if(ret>1){
             throw new Exception("更新不成功,主键："+urid);
         }
 
